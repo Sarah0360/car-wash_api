@@ -1,1 +1,1 @@
-import 
+import { model } from "mongoose";

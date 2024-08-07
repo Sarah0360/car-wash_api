@@ -6,7 +6,7 @@ import { logout, signup, token,  } from "../Controllers/user.js";
 export const userRouter = Router();
 
 // DEFINE ROUTER
-userRouter.post ('/api/auth/register', signup);
+userRouter.post ('/api/auth/signup', signup);
 
 userRouter.post('/api/auth/login', token);
 

@@ -33,8 +33,7 @@ export const token = async (req, res, next) => {
     try {
         const {userName, email, password} = req.body;
         // FIND USER USING THEIR EMAIL/USERNAME TO VALIDATE THE REQUEST
-        const user = await UserModel.findOne({$or:[{email}, {userName}]
-        });
+        const user = await UserModel.findOne({email});
         if (!user) {
             return res.status(401).json("User Does Not Exist");
         } else {
