@@ -14,4 +14,5 @@ const userSchema = new Schema({
 });
 
 userSchema.plugin(toJSON);
+
 export const UserModel = model('User', userSchema)
