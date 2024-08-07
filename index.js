@@ -14,6 +14,7 @@ expressOasGenerator.handleResponses(app, {
     tags: ['user'],
     mongooseModels: mongoose.modelNames(),
 });
+expressOasGenerator.handleRequests();
 
 // USE ROUTES
 app.use(userRouter);
