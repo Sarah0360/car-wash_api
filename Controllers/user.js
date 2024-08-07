@@ -32,7 +32,7 @@ export const token = async (req, res, next) => {
     try {
         const {email, password} = req.body;
         // FIND USER USING THEIR EMAIL/USERNAME TO VALIDATE THE REQUEST
-        const user = await UserModel.find({email});
+        const user = await UserModel.findOne({email});
         if (!user) {
             return res.status(401).json("User Does Not Exist");
         } else {
@@ -48,8 +48,8 @@ export const token = async (req, res, next) => {
                 {expiresIn: '72h'}
             );
 
-            // SET THE TOKEN IN THE COOKIE
-            res.cookie('token', token, { httpOnly: true });
+            // // SET THE TOKEN IN THE COOKIE
+            // res.cookie('token', token, { httpOnly: true });
 
             req.user = {id: user.id}
             // RETURN RESPONSE
