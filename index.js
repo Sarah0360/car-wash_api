@@ -11,11 +11,15 @@ app.use(cors());
 app.use(express.json({credentials: true, origin: '*'}));
 expressOasGenerator.handleResponses(app, {
     alwaysServeDocs: true,
-    tags: ['user'],
+    tags: ['auth'],
     mongooseModels: mongoose.modelNames(),
 });
 expressOasGenerator.handleRequests();
 app.use((req, res) => res.redirect('/api-docs/'));
+
+app.get("/api/v1/health", (req, res)=>{
+    res.json({status: "UP"});
+  });
 
 // USE ROUTES
 app.use(userRouter);
