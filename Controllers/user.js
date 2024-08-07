@@ -12,7 +12,7 @@ export const signup = async (req, res, next) => {
 
         const email = value.email;
 
-        const findIfUserExist = await UserModel.findOne({email});
+        const findIfUserExist = await UserModel.find({email});
         if(findIfUserExist) {
             return res.status(401).send('User Has Already SignedUp');
         } else{
@@ -31,7 +31,7 @@ export const signup = async (req, res, next) => {
 // LOGIN TOKEN
 export const token = async (req, res, next) => {
     try {
-        const {userName, email, password} = req.body;
+        const {email, password} = req.body;
         // FIND USER USING THEIR EMAIL/USERNAME TO VALIDATE THE REQUEST
         const user = await UserModel.findOne({email});
         if (!user) {
