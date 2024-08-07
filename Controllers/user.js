@@ -7,12 +7,12 @@ export const signup = async (req, res, next) => {
     try {
         const {error, value} = userSchema.validate(req.body);
         if (error){
-            return res.status(400).send(error.details[0],message);
+            return res.status(400).send(error.details[0].message);
         }
 
         const email = value.email;
 
-        const findIfUserExist = await UserModel.find({email});
+        const findIfUserExist = await UserModel.findOne({email});
         if(findIfUserExist) {
             return res.status(401).send('User Has Already SignedUp');
         } else{
@@ -33,7 +33,7 @@ export const token = async (req, res, next) => {
     try {
         const {email, password} = req.body;
         // FIND USER USING THEIR EMAIL/USERNAME TO VALIDATE THE REQUEST
-        const user = await UserModel.findOne({email});
+        const user = await UserModel.find({email});
         if (!user) {
             return res.status(401).json("User Does Not Exist");
         } else {
@@ -81,19 +81,19 @@ export const token = async (req, res, next) => {
 
 
 
-export const logout = async(req, res, next) => {
-    try { 
-     // Check if session exists
-     if (!req.token) {
-      return res.sendStatus(404); // Not Found if session does not exist
-    }  
-  res.clearCookie('token')
-  res.status(201).json({
-  status: 'Success',
-  message: 'Logged Out Successfully'
-})
-    } catch (error) {
-      next(error);
-    }
-  }
+// export const logout = async(req, res, next) => {
+//     try { 
+//      // Check if session exists
+//      if (!req.token) {
+//       return res.sendStatus(404); // Not Found if session does not exist
+//     }  
+//   res.clearCookie('token')
+//   res.status(201).json({
+//   status: 'Success',
+//   message: 'Logged Out Successfully'
+// })
+//     } catch (error) {
+//       next(error);
+//     }
+//   }
   
