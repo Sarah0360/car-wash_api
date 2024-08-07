@@ -9,7 +9,6 @@ export const signup = async (req, res, next) => {
         if (error){
             return res.status(400).send(error.details[0].message);
         }
-
         const email = value.email;
 
         const findIfUserExist = await UserModel.findOne({email});
