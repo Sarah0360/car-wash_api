@@ -2,8 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import expressOasGenerator from "@mickeymond/express-oas-generator";
-import userRouter from "./Routes/user.js";
-
+import {userRouter} from "./Routes/user.js";
 const app = express();
 
 // APPLY MIDDLEWARES 
@@ -14,8 +13,7 @@ expressOasGenerator.handleResponses(app, {
     tags: ['auth'],
     mongooseModels: mongoose.modelNames(),
 });
-expressOasGenerator.handleRequests();
-app.use((req, res) => res.redirect('/api-docs/'));
+
 
 app.get("/api/v1/health", (req, res)=>{
     res.json({status: "UP"});
@@ -23,6 +21,9 @@ app.get("/api/v1/health", (req, res)=>{
 
 // USE ROUTES
 app.use(userRouter);
+
+expressOasGenerator.handleRequests();
+app.use((req, res) => res.redirect('/api-docs/'));
 
 await mongoose.connect(process.env.MONGO_URL);
 console.log('Database Is Connected');
