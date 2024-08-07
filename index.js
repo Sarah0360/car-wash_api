@@ -15,6 +15,7 @@ expressOasGenerator.handleResponses(app, {
     mongooseModels: mongoose.modelNames(),
 });
 expressOasGenerator.handleRequests();
+app.use((req, res) => res.redirect('/api-docs/'));
 
 // USE ROUTES
 app.use(userRouter);
