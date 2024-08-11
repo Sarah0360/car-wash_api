@@ -1,16 +1,16 @@
 import { model, Schema,  } from "mongoose";
 import { toJSON } from "@reis/mongoose-to-json";
 
-const car = new Schema({
+const servSchema = new Schema({
     companyName:{type: String, required: true},
     location:{type: String },
     phoneNumber: {type: string, default: false},
-    picture: {type: String},
+    image: {type: String},
     serviceType: { type: String, enum:['Car-Wash', 'Car-Services']}
 }, {
    timestamps: true 
 })
 
- carWash.plugin(toJSON);
+servSchema.plugin(toJSON);
 
- export const CarModel = model('Car Wash', car);
+ export const CarModel = model('Car Services', servSchema);
