@@ -5,14 +5,14 @@ import { createService, getServices,getService, updateService, deleteService  } 
 
 export const serviceRouter = Router();
 
-serviceRouter.post("/carwash", remoteUpload.single('image'),createService);
+serviceRouter.post("/carcare", remoteUpload.single('image'),createService);
 
-serviceRouter.get("/carwash", getServices);
+serviceRouter.get("/carcare", getServices);
 
-serviceRouter.get("/carwash/:id", getService);
+serviceRouter.get("/carcare/:id", getService);
 
-serviceRouter.patch("/carwash/:id", remoteUpload.single('image'),updateService);
+serviceRouter.patch("/carcare/:id", remoteUpload.single('image'),updateService);
 
-serviceRouter.delete("/carwash/:id", deleteService);
+serviceRouter.delete("/carcare/:id", deleteService);
 
 // export default serviceRouter;
