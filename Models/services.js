@@ -1,17 +1,18 @@
-import { model, Schema,  } from "mongoose";
+import { model, Schema, Types } from "mongoose";
 import { toJSON } from "@reis/mongoose-to-json";
 
 const servSchema = new Schema({
     companyName:{type: String, required: true},
     location:{type: String },
     email: {type: String},
-    phoneNumber: {type: string, default: false},
+    phoneNumber: {type: String, default: false},
     image: {type: String},
-    serviceType: { type: String, enum:['Car-Wash', 'Car-Services']}
+    serviceType: { type: String, enum:['Car-Wash', 'Car-Services']},
+    booking: [{type: Types.ObjectId, ref: "Booking"}]
 }, {
    timestamps: true 
 })
 
 servSchema.plugin(toJSON);
 
- export const CarModel = model('Car Services', servSchema);
+ export const CompanyModel = model('Car Services', servSchema);
