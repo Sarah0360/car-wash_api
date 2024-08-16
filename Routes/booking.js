@@ -1,15 +1,15 @@
 import { Router } from "express";
-import { booking, deleteBooking, updateBooking } from "../Controllers/booking";
+import {  postBooking, updateBooking, cancelBooking } from "../Controllers/booking.js";
 import { isAuthenticated } from "../Middlewares/auth.js";
 
 
 
-const bookingRouter = Router();
+export const bookingRouter = Router();
 
-bookingRouter.post("/users/booking", isAuthenticated, booking);
+bookingRouter.post("/users/booking", isAuthenticated, postBooking);
 
 bookingRouter.patch("/users/booking/:id", isAuthenticated, updateBooking);
 
-bookingRouter.delete("/users/booking/:id", isAuthenticated, deleteBooking);
+bookingRouter.delete("/users/booking/:id", isAuthenticated, cancelBooking);
 
-export default bookingRouter;
+//export default bookingRouter;
