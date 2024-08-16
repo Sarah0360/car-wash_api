@@ -19,17 +19,15 @@ export const postBooking = async (req, res, next) => {
     }
     const booking = await BookingModel.create({...value, user: token});
 
-      user.bookings.push(booking.id);
+      user.booking.push(booking.id);
        await user.save();
-
+       
        const company = await CompanyModel.findOne({ email: req.body.email });
        if (!company) {
         return res.status(404).send("Company Not Found");
       }
          //SEND A BOOKING EMAIL To THE USER AND COMPANY
     
-      console.log("Sending booking confirmation email...");
-
       await mailTransport.sendMail({
             to: value.email,
             subject: "Booking Confirmation",
@@ -43,7 +41,7 @@ export const postBooking = async (req, res, next) => {
         }); 
 
   res.status(201).send("Booking Created Successfully");
-  
+
   } catch (error) {
     next (error)
   }

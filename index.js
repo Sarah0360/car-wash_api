@@ -13,10 +13,7 @@ const app = express();
 
 // APPLY MIDDLEWARES 
 app.use(express.json());
-app.post('/users/booking', (req, res, next) => {
-    console.log(req.body);  // Log the incoming JSON data
-    // Your logic here
-});
+
 app.use(cors({credentials: true, origin: '*'}));
 expressOasGenerator.handleResponses(app, {
     alwaysServeDocs: true,

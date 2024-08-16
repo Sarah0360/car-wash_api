@@ -8,7 +8,7 @@ const bookingSchema = new Schema ({
     washPackages:{type: String},
     date: {type: Date},
     time: {type: String},
-    servSchema: [{type: Types.ObjectId, ref: "User"}],
+    servSchema: [{type: Types.ObjectId, ref: "Car Services"}],
 },{
     timestamps:true
 });
