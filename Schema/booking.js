@@ -5,6 +5,7 @@ export const bookSchema = joi.object ({
     email: joi.string().email(),
     phoneNumber: joi.string(),
     washPackages: joi.string(),
+    typeOfService: joi.string().valid('Service Center', 'Home Services'),
     date:joi.date(),
     time: joi.string(),
     user: joi.string()

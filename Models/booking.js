@@ -6,6 +6,7 @@ const bookingSchema = new Schema ({
     email: {type: String},
     phoneNumber: {type: String},
     washPackages:{type: String},
+    typeOfService: { type: String, enum:['Service Center', 'Home Services']},
     date: {type: Date},
     time: {type: String},
     servSchema: [{type: Types.ObjectId, ref: "Car Services"}],
