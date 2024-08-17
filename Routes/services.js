@@ -13,6 +13,6 @@ serviceRouter.get("/carcare/:id", getService);
 
 serviceRouter.patch("/carcare/:id", remoteUpload.single('image'),updateService);
 
-serviceRouter.delete("/carcare/:id", deleteService);
+serviceRouter.delete("/carcare/:id", remoteUpload.single('image'), deleteService);
 
 // export default serviceRouter;

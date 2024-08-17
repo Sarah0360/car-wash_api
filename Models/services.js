@@ -8,6 +8,7 @@ const servSchema = new Schema({
     phoneNumber: {type: String, default: false},
     image: {type: String},
     serviceType: { type: String, enum:['Car-Wash', 'Car-Services']},
+    time: {type: String},
     booking: [{type: Types.ObjectId, ref: "Booking"}]
 }, {
    timestamps: true 
