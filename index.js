@@ -15,6 +15,7 @@ const app = express();
 app.use(express.json());
 
 app.use(cors({credentials: true, origin: '*'}));
+
 expressOasGenerator.handleResponses(app, {
     alwaysServeDocs: true,
     tags: ['auth','Booking', 'Car Services'],
@@ -26,9 +27,9 @@ app.get("/api/v1/health", (req, res)=>{
   });
 
 // USE ROUTES
-app.use(userRouter);
-app.use(serviceRouter);
-app.use(bookingRouter);
+app.use("/api/v1", userRouter);
+app.use("/api/v1", serviceRouter);
+app.use("/api/v1", bookingRouter);
 
 
 expressOasGenerator.handleRequests();

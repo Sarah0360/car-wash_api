@@ -31,7 +31,7 @@ export const postBooking = async (req, res, next) => {
       await mailTransport.sendMail({
             to: value.email,
             subject: "Booking Confirmation",
-            text: `Dear ${value.fullName},\n\nYour booking has been successfully created.\n\nThank you!`
+            text: `Dear ${value.fullName},\n\nYour booking has been successfully created for ${value.typeOfService}.\n\nThank you!`
         })
 
        await mailTransport.sendMail({

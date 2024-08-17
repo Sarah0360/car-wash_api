@@ -8,5 +8,6 @@ import joi from "joi";
     image: joi.string(),
     serviceType: joi.string().valid('Car-Wash', 'Car-Services'),
     booking: joi.string(),
+    time: joi.string()
 });
 export default servSchema;

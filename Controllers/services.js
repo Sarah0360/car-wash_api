@@ -60,7 +60,7 @@ export const getService = async(req, res, next) => {
 export const deleteService = async(req, res, next) => {
     try {
 // Delete recipe by id
-        const company = await CompanyModel.findByIdAndDelete(req.params.id);
+        const company = await CompanyModel.findByIdAndDelete({...req.params.id, image: req?.file?.filename,});
         if(!company){
             return res.status(404).send(" Company not found");
          }
