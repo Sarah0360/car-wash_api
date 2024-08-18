@@ -6,9 +6,9 @@ import { signup, token,  } from "../Controllers/user.js";
 export const userRouter = Router();
 
 // DEFINE ROUTER
-userRouter.post ('/api/auth/signup', signup);
+userRouter.post ('/auth/signup', signup);
 
-userRouter.post('/api/auth/login', token);
+userRouter.post('/auth/login', token);
 
 // userRouter.post('/api/auth/logout', isAuthenticated, logout);
 
