@@ -25,24 +25,25 @@ export const postBooking = async (req, res, next) => {
     //     // Use user's email for booking confirmation
     // const userEmail = user.email.toLowerCase();
 
-       const companyEmail = req.body.email.toLowerCase();
+       const id = req.body.services;
 
-       const company = await CompanyModel.findOne(({ email: companyEmail }));
+       const company = await CompanyModel.findById(id);
+       console.log(company)
        if (!company) {
         return res.status(404).send("Company Not Found");
       }
          //SEND A BOOKING EMAIL To THE USER AND COMPANY
     
       await mailTransport.sendMail({
-            to: value.email,
+            to: user.email,
             subject: "Booking Confirmation",
-            text: `Dear ${value.fullName},\n\nYour booking has been successfully created for ${value.typeOfService}.\n\nThank you!`
+            text: `Dear ${user.firstName},\n\nYour booking has been successfully created for ${value.typeOfService}.\n\nThank you!`
         })
 
        await mailTransport.sendMail({
           to: company.email,
             subject: "New Booking Received",
-            text: `A new booking has been made by ${value.fullName}.\n\nDetails:\n\n${JSON.stringify(value, null, 2)}`
+            text: `A new booking has been made by ${user.firstName}.\n\nDetails:\n\n${JSON.stringify(value, null, 2)}`
         }); 
 
   res.status(201).send("Booking Created Successfully");
