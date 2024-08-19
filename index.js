@@ -18,7 +18,7 @@ app.use(cors({credentials: true, origin: '*'}));
 
 expressOasGenerator.handleResponses(app, {
     alwaysServeDocs: true,
-    tags: ['auth','Booking', 'Car Services'],
+    tags: ['auth','Booking', 'Car Care'],
     mongooseModels: mongoose.modelNames(),
 });
 
