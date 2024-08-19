@@ -21,8 +21,13 @@ export const postBooking = async (req, res, next) => {
 
       user.booking.push(booking.id);
        await user.save();
-       
-       const company = await CompanyModel.findOne({ email: req.body.email });
+
+    //     // Use user's email for booking confirmation
+    // const userEmail = user.email.toLowerCase();
+
+       const companyEmail = req.body.email.toLowerCase();
+
+       const company = await CompanyModel.findOne(({ email: companyEmail }));
        if (!company) {
         return res.status(404).send("Company Not Found");
       }
@@ -90,7 +95,7 @@ export const updateBooking = async (req, res, next) => {
           text: `Dear ${value.fullName},\n\nYour booking has been successfully updated.\n\nThank you!`,
         }),
         mailTransport.sendMail({
-          to: company.email,
+          to: "japh@gmail.com", //company.email,
           subject: "Booking Updated",
           text: `A booking has been updated by ${value.fullName}.\n\nDetails:\n\n${JSON.stringify(value, null, 2)}`,
         }),
