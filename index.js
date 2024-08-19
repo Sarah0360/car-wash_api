@@ -2,7 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import { restartServer } from "./restart_server.js"; 
-//import expressOasGenerator from "@mickeymond/express-oas-generator";
+import expressOasGenerator from "@mickeymond/express-oas-generator";
 import {userRouter} from "./Routes/user.js";
 import {bookingRouter} from "./Routes/booking.js";
 import {serviceRouter} from "./Routes/services.js"
@@ -16,11 +16,11 @@ app.use(express.json());
 
 app.use(cors({credentials: true, origin: '*'}));
 
-// expressOasGenerator.handleResponses(app, {
-//     alwaysServeDocs: true,
-//     tags: ['auth','Booking', 'CarCare'],
-//     mongooseModels: mongoose.modelNames(),
-// });
+expressOasGenerator.handleResponses(app, {
+    alwaysServeDocs: true,
+    tags: ['auth','Booking', 'CarCare'],
+    mongooseModels: mongoose.modelNames(),
+});
 
 app.get("/api/v1/health", (req, res)=>{
     res.json({status: "UP"});
@@ -32,13 +32,13 @@ app.use("/api/v1", serviceRouter);
 app.use("/api/v1", bookingRouter);
 
 
-// expressOasGenerator.handleRequests();
-// app.use((req, res) => res.redirect('/api-docs/'));
+expressOasGenerator.handleRequests();
+app.use((req, res) => res.redirect('/api-docs/'));
 
 const reboot = async () => {
 setInterval(restartServer, process.env.INTERVAL)
 }
-const PORT = 4546;  ////process.env.PORT;
+const PORT = 4545;  ////process.env.PORT;
 
 await mongoose.connect(process.env.MONGO_URL)
 console.log('Database Is Connected')
