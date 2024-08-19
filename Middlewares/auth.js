@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 
 export const isAuthenticated = (req, res, next) => {
     try {
+        
         // ETRACT TOKEN FROM HEADERS
         const token = req.headers.authorization.split(' ')[1];
         if (token) {
