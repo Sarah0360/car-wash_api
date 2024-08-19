@@ -9,7 +9,8 @@ const bookingSchema = new Schema ({
     typeOfService: { type: String, enum:['Service Center', 'Home Services']},
     date: {type: Date},
     time: {type: String},
-    servSchema: [{type: Types.ObjectId, ref: "Car Services"}],
+    servSchema: [{type: Types.ObjectId, ref: "Car Services"}],  
+     user: [{type: Types.ObjectId, ref: "User"}]
 },{
     timestamps:true
 });
